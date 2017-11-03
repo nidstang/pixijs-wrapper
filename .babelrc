@@ -1,6 +1,6 @@
 {
     "presets": [
-        ["evn", { "modules": false }],
+        ["env", { "modules": false }],
         "flow"
     ]
 }
