@@ -4,7 +4,9 @@
   "description": "2D engine for runeworld",
   "main": "index.js",
   "scripts": {
-    "webpack": "webpack -w",
+    "devwatcher": "webpack -w --config webpack.dev.js",
+    "dev": "webpack-web-server --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js",
     "flow": "flow"
   },
   "author": "Runeworld.net",
@@ -15,6 +17,8 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-flow": "^6.23.0",
     "eslint": "^4.10.0",
-    "webpack": "^3.8.1"
+    "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.9.4",
+    "webpack-merge": "^4.1.1"
   }
 }

@@ -1,5 +1,7 @@
 const path = require('path');
 
+const sourcePath = path.resolve(__dirname, 'source');
+
 module.exports = {
     entry: './source/main.js',
     output: {
@@ -7,11 +9,18 @@ module.exports = {
         filename: 'app.js',
     },
 
+    resolve: {
+        extensions: ['.js'],
+        alias: {
+            '@': sourcePath
+        }
+    },
+
     module: {
         rules: [
             {
                 test: /\.js$/,
-                exclude: '/node_modules/',
+                include: sourcePath,
                 loader: 'babel-loader',
             },
         ],
