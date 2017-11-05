@@ -11,3 +11,4 @@ module.file_ext=.css
 module.file_ext=.js
 module.file_ext=.jsx
 module.file_ext=.json
+module.name_mapper='^@\/\(.*\)$' -> '<PROJECT_ROOT>/source/\1'
