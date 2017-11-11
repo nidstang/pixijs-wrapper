@@ -4,5 +4,18 @@
     "env": {
         "browser": true,
         "node": true
+    },
+    "rules": {
+        "class-methods-use-this": ["off"]
+    },
+    /*"rules": {
+        "import/no-extraneous-dependencies": ["off"]
+    },*/
+    "settings": {
+        "import/resolver": {
+            "webpack": {
+                "config": "webpack.base.js"
+            }
+        }
     }
 }
