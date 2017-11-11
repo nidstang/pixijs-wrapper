@@ -9,7 +9,7 @@ const libraryName = 'runengine';
 const outputFile = `${libraryName}.min.js`;
 
 module.exports = merge(webpackBasicConfig, {
-  entry: path.resolve(__dirname, 'source/main.js'),
+  entry: path.resolve(__dirname, 'source/entry.js'),
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: outputFile,

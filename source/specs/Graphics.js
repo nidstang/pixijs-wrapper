@@ -1,9 +1,13 @@
 // @flow
-import { Sprite } from './Sprite';
-import { SpriteFactory } from './SpriteFactory';
+import { ISprite } from './Sprite';
+import { ISpriteFactory } from './SpriteFactory';
+import { IVector2 } from './Vector2';
+import type { TextureId } from './Types';
 
-export interface Graphics {
-    init() : void;
-    drawSprite(sprite : Sprite) : void;
-    getSpriteFactory() : SpriteFactory;
+export interface IGraphics {
+    init(size: IVector2, view : HTMLCanvasElement, options : Object) : void;
+    drawSprite(sprite : ISprite) : void;
+    getSpriteFactory() : ISpriteFactory;
+    render() : void;
+    getSprite(textureId: TextureId) : ISprite;
 }

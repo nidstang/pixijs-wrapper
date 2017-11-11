@@ -1,9 +1,80 @@
-import * as PIXI from 'pixi.js';
+// @flow
 
-const renderer = PIXI.autoDetectRenderer(256, 256);
+import ExternalGame from '@/impl/ExternalGame';
+import Vector2 from '@/impl/Vector2';
+import Scene from '@/impl/Scene';
+import Component from '@/impl/Component';
+import Entity from '@/impl/Entity';
+import { IGraphics } from '@/specs/Graphics';
+import { IVector2 } from '@/specs/Vector2';
+import { ISprite } from '@/specs/Sprite';
+import type { TextureId } from '@/specs/Types';
 
-document.body.appendChild(renderer.view);
+class Renderer extends Component {
+  mSprite: ISprite;
+  mGraphics: IGraphics;
 
-const stage = new PIXI.Container();
+  init() {
+    this.mGraphics = this.getGraphics();
+  }
 
-renderer.render(stage);
+  setTexture(textureId: TextureId) {
+    this.mSprite = this.mGraphics.getSprite(textureId);
+
+    this.mSprite.setPosition(new Vector2(this.getEntity().getX(), this.getEntity().getY()));
+    this.mGraphics.drawSprite(this.mSprite);
+  }
+
+  // eslint-disable-next-line
+  update(deltaTime : number) : void {
+    this.mSprite
+      .setPosition(new Vector2(this.getEntity().getX(), this.mSprite.getPosition().getY()));
+  }
+}
+
+class MyEntity extends Entity {
+  constructor(position : IVector2, size: IVector2) {
+    super(position, size);
+    const RendererComp = new Renderer(this);
+    RendererComp.init();
+    RendererComp.setTexture('images/cat.png');
+    this.addComponent(RendererComp);
+  }
+
+  update(deltaTime: number) {
+    super.update(deltaTime);
+    // this.setX(this.getX() + 2); movement
+  }
+}
+
+class MyScene extends Scene {
+  mounted() {
+    super.mounted();
+    const entity = new MyEntity(new Vector2(0.0, 0.0), new Vector2(0.0, 0.0));
+    this.addEntity(entity);
+  }
+}
+
+const canvas : HTMLCanvasElement = (document.getElementById('app') : any);
+const game = new ExternalGame(
+  new Vector2(200, 200),
+  canvas,
+  {},
+);
+
+function GameLoop() {
+  requestAnimationFrame(GameLoop);
+
+  game.update(0.0);
+}
+
+game.loadResources(['images/cat.png', ''], () => null, () => {
+  console.log('Resources loaded!');
+
+  const scene = new MyScene();
+
+  game.getSceneManager().setScene(scene);
+
+  GameLoop();
+  // game.update(0.0);
+});

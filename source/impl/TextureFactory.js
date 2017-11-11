@@ -20,8 +20,10 @@ class TextureFactory implements ITextureFactory {
   }
 
   getTexture(id : TextureId) : ITexture {
-    const pixiTexture = PIXI.loader.resources[id];
-    return new Texture(pixiTexture);
+    const resource = PIXI.loader.resources[id];
+    const texture = new Texture();
+    texture.setSource(resource.data);
+    return texture;
   }
 }
 

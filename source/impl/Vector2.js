@@ -5,6 +5,10 @@ class Vector2 implements IVector2 {
     mX: number;
     mY: number;
 
+    constructor(x: number, y:number) {
+      this.mX = x;
+      this.mY = y;
+    }
     setX(x : number) : void {
       this.mX = x;
     }
