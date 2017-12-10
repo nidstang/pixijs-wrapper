@@ -12,7 +12,7 @@ class ExternalGame {
     this.mGame.init(size, view, options);
   }
 
-  loadResources(resource: Resource, onProgress: Function, onDone: Function) : void {
+  loadResources(resource: Array<Resource>, onProgress: Function, onDone: Function) : void {
     this.mGame.loadResources(resource, onProgress, onDone);
   }
 
