@@ -18,6 +18,15 @@ module.exports = merge(webpackBasicConfig, {
     umdNamedDefine: true,
   },
 
+  externals: {
+    three: {
+      commonjs: 'pixi.js',
+      commonjs2: 'pixi.js',
+      amd: 'pixi.js',
+      root: '_',
+    },
+  },
+
   plugins: [
     new UglifyJsPlugin({
       minimize: true,
