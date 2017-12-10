@@ -10,7 +10,7 @@ import type { TextureId } from '@/specs/Types';
 
 const Game = ExternalGame;
 
-export default {
+export {
   Game,
   Vector2,
   Scene,
