@@ -37,7 +37,7 @@ class MyEntity extends Entity {
     super(position, size);
     const RendererComp = new Renderer(this);
     RendererComp.init();
-    RendererComp.setTexture('images/cat.png');
+    RendererComp.setTexture('cat');
     this.addComponent(RendererComp);
   }
 
@@ -68,7 +68,7 @@ function GameLoop() {
   game.update(0.0);
 }
 
-game.loadResources(['images/cat.png', ''], () => null, () => {
+game.loadResources([['cat', 'images/cat.png']], () => null, () => {
   console.log('Resources loaded!');
 
   const scene = new MyScene();

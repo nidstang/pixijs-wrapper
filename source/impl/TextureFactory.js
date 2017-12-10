@@ -9,14 +9,19 @@ import Texture from './Texture';
 class TextureFactory implements ITextureFactory {
   loaded : boolean;
 
-  load(resource : Resource, onProgress : Function, onDone : Function) : void {
+  load(resources : Array<Resource>, onProgress : Function, onDone : Function) : void {
     PIXI.loader
-      .add(resource)
+      .add(resources.map(this.getResourceObject))
       .on('progress', onProgress)
       .load(() => {
         this.loaded = true;
         onDone();
       });
+  }
+
+  getResourceObject(resource : Resource) {
+    const [name, url] = resource;
+    return { name, url };
   }
 
   getTexture(id : TextureId) : ITexture {

@@ -25,10 +25,10 @@ class Game {
     return this.mSceneManager;
   }
 
-  loadResources(resource: Resource, onProgress: Function, onDone: Function) : void {
+  loadResources(resources: Array<Resource>, onProgress: Function, onDone: Function) : void {
     const graphics : Graphics = (Game.getGraphics() : any);
     graphics.getTextureFactory()
-      .load(resource, onProgress, onDone);
+      .load(resources, onProgress, onDone);
   }
 
   update(deltaTime : number) : void {
