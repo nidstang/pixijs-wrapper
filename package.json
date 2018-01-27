@@ -1,6 +1,6 @@
 {
   "name": "runengine",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "2D engine for runeworld",
   "main": "dist/civiengine.min.js",
   "scripts": {
