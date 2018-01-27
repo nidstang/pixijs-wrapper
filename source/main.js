@@ -23,12 +23,17 @@ class Renderer extends Component {
 
     this.mSprite.setPosition(new Vector2(this.getEntity().getX(), this.getEntity().getY()));
     this.mGraphics.drawSprite(this.mSprite);
+
+    //this.mGraphics.test();
   }
 
   // eslint-disable-next-line
   update(deltaTime : number) : void {
-    this.mSprite
-      .setPosition(new Vector2(this.getEntity().getX(), this.mSprite.getPosition().getY()));
+    //const pos = new Vector2(this.getEntity().getX(), this.getEntity().getY());
+    // center camera in player
+    //this.mGraphics.getCamera().center(pos, this.mSprite.getDimensions());
+    const pos = this.getEntity().getPosition();
+    this.mSprite.setPosition(this.getCamera().getPositionInCameraCoords(pos));
   }
 }
 
@@ -42,6 +47,8 @@ class MyEntity extends Entity {
   }
 
   update(deltaTime: number) {
+    ExternalGame.getCamera().center(this.getPosition(), this.getDimensions());
+
     super.update(deltaTime);
     // this.setX(this.getX() + 2); movement
   }
@@ -50,7 +57,7 @@ class MyEntity extends Entity {
 class MyScene extends Scene {
   mounted() {
     super.mounted();
-    const entity = new MyEntity(new Vector2(0.0, 0.0), new Vector2(0.0, 0.0));
+    const entity = new MyEntity(new Vector2(0.0, 0.0), new Vector2(64.0, 64.0));
     this.addEntity(entity);
   }
 }
@@ -65,7 +72,7 @@ const game = new ExternalGame(
 function GameLoop() {
   requestAnimationFrame(GameLoop);
 
-  game.update(0.0);
+  game.update(0.1);
 }
 
 game.loadResources([['cat', 'images/cat.png']], () => null, () => {

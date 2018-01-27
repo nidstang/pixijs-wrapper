@@ -2,6 +2,7 @@
 import { ISprite } from './Sprite';
 import { ISpriteFactory } from './SpriteFactory';
 import { IVector2 } from './Vector2';
+import { ICamera } from './Camera';
 import type { TextureId } from './Types';
 
 export interface IGraphics {

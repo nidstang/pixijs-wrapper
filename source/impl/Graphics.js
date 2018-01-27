@@ -10,6 +10,7 @@ import Sprite from './Sprite';
 import SpriteFactory from './SpriteFactory';
 import TextureFactory from './TextureFactory';
 import Texture from './Texture';
+import Vector2 from './Vector2';
 
 class Graphics implements IGraphics {
   mRenderer: PIXI.WebGLRenderer;

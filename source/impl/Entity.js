@@ -13,12 +13,28 @@ class Entity {
     this.mSize = size;
   }
 
+  getPosition () : IVector2 {
+    return this.mPosition;
+  }
+
+  getDimensions () : IVector2 {
+    return this.mSize;
+  }
+
   getX() : number {
     return this.mPosition.getX();
   }
 
   getY() : number {
     return this.mPosition.getY();
+  }
+
+  getWidth () : Number {
+    return this.mSize.getX();
+  }
+
+  getHeight() : Number {
+    return this.mSize.getY();
   }
 
   setX(x: number) : void {

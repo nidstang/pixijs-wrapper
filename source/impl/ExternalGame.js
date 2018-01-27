@@ -1,6 +1,7 @@
 // @flow
 import { IVector2 } from '@/specs/Vector2';
 import type { Resource } from '@/specs/Types';
+import { ICamera } from '@/specs/Camera';
 import Game from './Game';
 import SceneManager from './SceneManager';
 
@@ -18,6 +19,10 @@ class ExternalGame {
 
   getSceneManager() : SceneManager {
     return this.mGame.getSceneManager();
+  }
+
+  static getCamera () : ICamera {
+    return Game.getCamera();
   }
 
   update(deltaTime: number) {
