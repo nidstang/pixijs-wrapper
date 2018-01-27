@@ -29,11 +29,11 @@ class Renderer extends Component {
 
   // eslint-disable-next-line
   update(deltaTime : number) : void {
-    const pos = new Vector2(this.getEntity().getX(), this.getEntity().getY());
+    //const pos = new Vector2(this.getEntity().getX(), this.getEntity().getY());
     // center camera in player
-    this.mGraphics.getCamera().center(pos, this.mSprite.getDimensions());
-    // apply camera
-    this.mSprite.setPosition(this.mGraphics.getCamera().getPositionInCameraCoords(pos));
+    //this.mGraphics.getCamera().center(pos, this.mSprite.getDimensions());
+    const pos = this.getEntity().getPosition();
+    this.mSprite.setPosition(this.getCamera().getPositionInCameraCoords(pos));
   }
 }
 
@@ -47,6 +47,8 @@ class MyEntity extends Entity {
   }
 
   update(deltaTime: number) {
+    ExternalGame.getCamera().center(this.getPosition(), this.getDimensions());
+
     super.update(deltaTime);
     // this.setX(this.getX() + 2); movement
   }
@@ -55,7 +57,7 @@ class MyEntity extends Entity {
 class MyScene extends Scene {
   mounted() {
     super.mounted();
-    const entity = new MyEntity(new Vector2(0.0, 0.0), new Vector2(0.0, 0.0));
+    const entity = new MyEntity(new Vector2(0.0, 0.0), new Vector2(64.0, 64.0));
     this.addEntity(entity);
   }
 }

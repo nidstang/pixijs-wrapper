@@ -1,5 +1,6 @@
 // @flow
 import { IGraphics } from '@/specs/Graphics';
+import { ICamera } from '@/specs/Camera';
 import Game from './Game';
 import Entity from './Entity';
 
@@ -11,8 +12,12 @@ class Component {
     this.mEntity = entity;
   }
 
-  getGraphics() {
+  getGraphics () : IGraphics {
     return Game.getGraphics();
+  }
+
+  getCamera () : ICamera {
+    return Game.getCamera();
   }
 
   getEntity() {

@@ -11,5 +11,4 @@ export interface IGraphics {
     getSpriteFactory() : ISpriteFactory;
     render() : void;
     getSprite(textureId: TextureId) : ISprite;
-    getCamera() : ICamera;
 }
