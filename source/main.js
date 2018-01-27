@@ -23,12 +23,17 @@ class Renderer extends Component {
 
     this.mSprite.setPosition(new Vector2(this.getEntity().getX(), this.getEntity().getY()));
     this.mGraphics.drawSprite(this.mSprite);
+
+    //this.mGraphics.test();
   }
 
   // eslint-disable-next-line
   update(deltaTime : number) : void {
-    this.mSprite
-      .setPosition(new Vector2(this.getEntity().getX(), this.mSprite.getPosition().getY()));
+    const pos = new Vector2(this.getEntity().getX(), this.getEntity().getY());
+    // center camera in player
+    this.mGraphics.getCamera().center(pos, this.mSprite.getDimensions());
+    // apply camera
+    this.mSprite.setPosition(this.mGraphics.getCamera().getPositionInCameraCoords(pos));
   }
 }
 
@@ -65,7 +70,7 @@ const game = new ExternalGame(
 function GameLoop() {
   requestAnimationFrame(GameLoop);
 
-  game.update(0.0);
+  game.update(0.1);
 }
 
 game.loadResources([['cat', 'images/cat.png']], () => null, () => {
